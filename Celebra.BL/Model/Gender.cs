@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Celebra.BL.Model
 {
+    [Serializable]
     public class Gender
     {
         public string Name { get; }
