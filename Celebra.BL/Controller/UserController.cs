@@ -1,43 +1,68 @@
 ﻿using Celebra.BL.Model;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Celebra.BL.Controller
 {
     public class UserController
     {
-        public User User { get; }
+        public List<User>   Users           { get; }
+        public User         CurrentUser     { get; }
+        public bool         isNewUser       { get; } = false;
 
-        public UserController()
+        public UserController(string userName)
+        {
+            if (string.IsNullOrWhiteSpace(userName))
+            {
+                throw new ArgumentNullException(nameof(userName));
+            }
+            Users = GetUsersData();
+            
+            CurrentUser = Users.SingleOrDefault(u => u.Name == userName);
+
+            if (CurrentUser == null)
+            {
+                CurrentUser = new User(userName);
+                Users.Add(CurrentUser);
+                isNewUser = true;
+                Save();
+            }
+        }
+
+        private List<User> GetUsersData()
         {
             var formatter = new BinaryFormatter();
             using (var fs = new FileStream("users.dat", FileMode.OpenOrCreate))
             {
-                if (formatter.Deserialize(fs) is User user)
+                if (formatter.Deserialize(fs) is List<User> users)
                 {
-                    User = user;
+                    return users;
                 }
-                // TODO add realization...
+                else
+                {
+                    return new List<User>();
+                }
             }
         }
-        public UserController(User user)
-        {
-            User = user ?? throw new ArgumentNullException(nameof(user));
-        }
-        public UserController(string userName, string genderName, DateTime birdthDay, double weight, double height)
-        {
-            // TODO Check
-            var gender = new Gender(genderName);
-            User = new User(userName, gender, birdthDay, weight, height);
-        }
 
+        public void SetNewUserData(string genderName, DateTime birthData, double weight = 1, double height = 1)
+        {
+            //TODO Check
+            CurrentUser.Gender      = new Gender(genderName);
+            CurrentUser.BirthDate   = birthData;
+            CurrentUser.Weight      = weight;
+            CurrentUser.Height      = height;
+            Save();
+        }
         public void Save()
         {
             var formatter = new BinaryFormatter();
             using (var fs = new FileStream("users.dat", FileMode.OpenOrCreate))
             {
-                formatter.Serialize(fs, User);
+                formatter.Serialize(fs, Users);
             }
         }
     }
