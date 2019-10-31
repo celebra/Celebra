@@ -12,15 +12,16 @@ namespace Celebra.BL.Controller.Tests
         [TestMethod()]
         public void SetNewUserDataTest()
         {
-            var userName = Guid.NewGuid().ToString();
-            var gender = "man";
-            var birthData = DateTime.Now.AddYears(-18);
-            var weight = 90;
-            var height = 190;
-            var controller = new UserController(userName);
+            var userName    = Guid.NewGuid().ToString();
+            var gender      = "man";
+            var birthData   = DateTime.Now.AddYears(-18);
+            var weight      = 90;
+            var height      = 190;
+            var controller  = new UserController(userName);
 
             controller.SetNewUserData(gender, birthData, weight, height);
             var controller2 = new UserController(userName);
+            
             Assert.AreEqual(userName, controller2.CurrentUser.Name);
             Assert.AreEqual(gender, controller2.CurrentUser.Gender.Name);
             Assert.AreEqual(birthData, controller2.CurrentUser.BirthDate);
