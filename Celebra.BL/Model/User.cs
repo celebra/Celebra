@@ -43,8 +43,8 @@ namespace Celebra.BL.Model
             }
             #endregion
 
-            Name        = name      ?? throw new ArgumentNullException(nameof(name));
-            Gender      = gender    ?? throw new ArgumentNullException(nameof(gender));
+            Name        = name          ?? throw new ArgumentNullException(nameof(name));
+            Gender      = gender        ?? throw new ArgumentNullException(nameof(gender));
             BirthDate   = birthDate;
             Weight      = weight;
             Height      = height;
