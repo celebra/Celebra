@@ -10,11 +10,12 @@ namespace Celebra.CMD
     {
         static void Main(string[] args)
         {
+            
             var culture = CultureInfo.CreateSpecificCulture("ru-ru");
-            var resourceManager = new ResourceManager("Celebra.CMD.Languages.Msg", typeof(Program).Assembly);
+            var resourceManager = new ResourceManager("Celebra.CMD.Languages.Resource", typeof(Program).Assembly);
 
-            Console.WriteLine(resourceManager.GetString("Hello"));
-            Console.WriteLine(resourceManager.GetString("EnterUserName"));
+            Console.WriteLine(resourceManager.GetString("Hello", culture));
+            Console.WriteLine(resourceManager.GetString("EnterUserName", culture));
             var name = Console.ReadLine();
 
             var userController = new UserController(name);
