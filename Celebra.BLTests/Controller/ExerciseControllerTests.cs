@@ -1,13 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Celebra.BLTests.Controller;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using Celebra.BL.Controller;
 using Celebra.BL.Model;
 using System.Linq;
 
-namespace Celebra.BLTests.Controller.Tests
+namespace Celebra.BL.Controller.Tests
 {
     [TestClass()]
     public class ExerciseControllerTests

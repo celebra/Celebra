@@ -26,7 +26,7 @@ namespace Celebra.CMD
                 Console.WriteLine("Введите ваш пол:");
 
                 var gender = Console.ReadLine();
-                var birthData = ParseDateTime();
+                var birthData = ParseDateTime("датa рождения");
                 var weight = ParseDouble("вес");
                 var height = ParseDouble("рост");
 
@@ -56,6 +56,13 @@ namespace Celebra.CMD
                         break;
 
                     case ConsoleKey.A:
+                        var exe = EnterExercise();
+                        exerciseController.Add(exe.Activity, exe.Begin, exe.End);
+
+                        foreach (var item in exerciseController.Exercises)
+                        {
+                            Console.WriteLine($"\t{item.Activity} с {item.Start.ToShortTimeString()} до {item.Finish.ToShortTimeString()}");
+                        }
                         break;
 
                     case ConsoleKey.Q:
@@ -68,6 +75,16 @@ namespace Celebra.CMD
             Console.ReadLine();
         }
 
+        private static (DateTime Begin, DateTime End, Activity Activity) EnterExercise()
+        {
+            Console.Write("Введите название упражнения: ");
+            var name = Console.ReadLine();
+            var energy = ParseDouble("расход энергии в минуту ");
+            var begin = ParseDateTime("начало упражнения");
+            var end = ParseDateTime("окончание упражнения");
+            var activity = new Activity(name, energy);
+            return (begin, end, activity);
+        }
         private static (Food Food, double Weight) EnterEating()
         {
             Console.Write("Введите имя продукта: ");
@@ -81,26 +98,24 @@ namespace Celebra.CMD
 
             return (Food: product, Weight: weight);
         }
-
-        private static DateTime ParseDateTime()
+        private static DateTime ParseDateTime(string value)
         {
             DateTime birthData;
             while (true)
             {
-                Console.WriteLine("Введите дату рождения (dd.MM.yyyy):");
+                Console.WriteLine($"Введите {value} (dd.MM.yyyy):");
                 if (DateTime.TryParse(Console.ReadLine(), out birthData))
                 {
                     break;
                 }
                 else
                 {
-                    Console.WriteLine("Ошибка! Введите дату рождения (dd.MM.yyyy):");
+                    Console.WriteLine($"Ошибка! Введите {value} (dd.MM.yyyy):");
                 }
             }
 
             return birthData;
         }
-
         private static double ParseDouble(string name)
         {
             while (true)
