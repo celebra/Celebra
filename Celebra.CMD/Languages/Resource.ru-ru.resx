@@ -118,9 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EnterUserName" xml:space="preserve">
-    <value>Введите имя пользователя</value>
+    <value>Введите имя пользователя:</value>
   </data>
   <data name="Hello" xml:space="preserve">
-    <value>Добропожаловать в приложение Celebra</value>
+    <value>Добропожаловать в приложение CELEBRA!</value>
   </data>
 </root>

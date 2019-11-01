@@ -61,7 +61,7 @@ namespace Celebra.CMD.Languages {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на name.
+        ///   Ищет локализованную строку, похожую на enter name.
         /// </summary>
         internal static string EnterUserName {
             get {

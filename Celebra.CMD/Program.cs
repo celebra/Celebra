@@ -17,9 +17,9 @@ namespace Celebra.CMD
             Console.WriteLine(resourceManager.GetString("EnterUserName", culture));
             var name = Console.ReadLine();
 
-            var userController          = new UserController(name);
-            var eatingController        = new EatingController(userController.CurrentUser);
-            var exerciseController      = new ExerciseController(userController.CurrentUser);
+            var userController = new UserController(name);
+            var eatingController = new EatingController(userController.CurrentUser);
+            var exerciseController = new ExerciseController(userController.CurrentUser);
 
             if (userController.isNewUser)
             {

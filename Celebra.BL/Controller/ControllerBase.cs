@@ -8,28 +8,15 @@ namespace Celebra.BL.Controller
 {
     public abstract class ControllerBase
     {
+        protected IDataSaver saver = new SerializeDataSaver();
+
         protected void Save(string fileName, object item)
         {
-            var formatter = new BinaryFormatter();
-            using (var fs = new FileStream(fileName, FileMode.OpenOrCreate))
-            {
-                formatter.Serialize(fs, item);
-            }
+            saver.Save(fileName, item);
         }
         protected T Load<T>(string fileName)
         {
-            var formatter = new BinaryFormatter();
-            using (var fs = new FileStream("users.dat", FileMode.OpenOrCreate))
-            {
-                if (fs.Length > 0 && formatter.Deserialize(fs) is T items)
-                {
-                    return items;
-                }
-                else
-                {
-                    return default(T);
-                }
-            }
+            return saver.Load<T>(fileName);
         }
     }
     

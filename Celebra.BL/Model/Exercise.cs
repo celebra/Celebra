@@ -10,6 +10,7 @@ namespace Celebra.BL.Model
     [Serializable]
     public class Exercise
     {
+        public int          Id          { get; set; }
         public DateTime     Start       { get; }
         public DateTime     Finish      { get; }
         public Activity     Activity    { get; }

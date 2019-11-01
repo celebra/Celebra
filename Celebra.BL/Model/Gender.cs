@@ -5,7 +5,9 @@ namespace Celebra.BL.Model
     [Serializable]
     public class Gender
     {
-        public string Name { get; }
+        public int      Id      { get; set; }
+        public string   Name    { get; }
+
         public Gender(string name)
         {
             Name = name ?? throw new ArgumentNullException(nameof(name));

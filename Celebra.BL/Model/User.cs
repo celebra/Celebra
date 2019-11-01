@@ -5,6 +5,7 @@ namespace Celebra.BL.Model
     [Serializable]
     public class User
     {
+        public int          Id          { get; set; }
         public string       Name        { get; }
         public Gender       Gender      { get; set; }
         public DateTime     BirthDate   { get; set; }
