@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Celebra.BLTests.Controller
+namespace Celebra.BL.Controller
 {
     public class ExerciseController : ControllerBase
     {
