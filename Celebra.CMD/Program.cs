@@ -10,7 +10,6 @@ namespace Celebra.CMD
     {
         static void Main(string[] args)
         {
-            
             var culture = CultureInfo.CreateSpecificCulture("ru-ru");
             var resourceManager = new ResourceManager("Celebra.CMD.Languages.Resource", typeof(Program).Assembly);
 
@@ -18,17 +17,17 @@ namespace Celebra.CMD
             Console.WriteLine(resourceManager.GetString("EnterUserName", culture));
             var name = Console.ReadLine();
 
-            var userController = new UserController(name);
-            var eatingController = new EatingController(userController.CurrentUser);
+            var userController      = new UserController(name);
+            var eatingController    = new EatingController(userController.CurrentUser);
 
             if (userController.isNewUser)
             {
                 Console.WriteLine("Введите ваш пол:");
 
-                var gender = Console.ReadLine();
-                var birthData = ParseDateTime();
-                var weight = ParseDouble("вес");
-                var height = ParseDouble("рост");
+                var gender      = Console.ReadLine();
+                var birthData   = ParseDateTime();
+                var weight      = ParseDouble("вес");
+                var height      = ParseDouble("рост");
 
                 userController.SetNewUserData(gender, birthData, weight, height);
             }
