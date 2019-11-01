@@ -11,6 +11,7 @@ namespace Celebra.BLTests.Controller
     {
         private const string EXERCISES_FILE_NAME    = "exercises.dat";
         private const string ACTIVITIES_FILE_NAME   = "activities.dat";
+
         private readonly User user;
         public List<Exercise> Exercises     { get; }
         public List<Activity> Activities    { get; }

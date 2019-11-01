@@ -17,41 +17,54 @@ namespace Celebra.CMD
             Console.WriteLine(resourceManager.GetString("EnterUserName", culture));
             var name = Console.ReadLine();
 
-            var userController      = new UserController(name);
-            var eatingController    = new EatingController(userController.CurrentUser);
+            var userController          = new UserController(name);
+            var eatingController        = new EatingController(userController.CurrentUser);
+            var exerciseController      = new ExerciseController(userController.CurrentUser);
 
             if (userController.isNewUser)
             {
                 Console.WriteLine("Введите ваш пол:");
 
-                var gender      = Console.ReadLine();
-                var birthData   = ParseDateTime();
-                var weight      = ParseDouble("вес");
-                var height      = ParseDouble("рост");
+                var gender = Console.ReadLine();
+                var birthData = ParseDateTime();
+                var weight = ParseDouble("вес");
+                var height = ParseDouble("рост");
 
                 userController.SetNewUserData(gender, birthData, weight, height);
             }
 
-            Console.WriteLine("Что вы хотите сделать ? ");
-            Console.WriteLine("E - ввести прием пищи ");
-
-            var key = Console.ReadKey();
-            Console.WriteLine();
-
-            if (key.Key == ConsoleKey.E)
+            while (true)
             {
-                var foods = EnterEating();
-                eatingController.Add(foods.Food, foods.Weight);
+                Console.WriteLine("Что вы хотите сделать ? ");
+                Console.WriteLine("E - ввести прием пищи ");
+                Console.WriteLine("A - ввести упражнение ");
+                Console.WriteLine("Q - Exit ");
 
-                foreach (var item in eatingController.Eating.Foods)
+                var key = Console.ReadKey();
+                Console.WriteLine();
+
+                switch (key.Key)
                 {
-                    Console.WriteLine($"\t{item.Key} - {item.Value}");
+                    case ConsoleKey.E:
+                        var foods = EnterEating();
+                        eatingController.Add(foods.Food, foods.Weight);
+
+                        foreach (var item in eatingController.Eating.Foods)
+                        {
+                            Console.WriteLine($"\t{item.Key} - {item.Value}");
+                        }
+                        break;
+
+                    case ConsoleKey.A:
+                        break;
+
+                    case ConsoleKey.Q:
+                        Environment.Exit(0);
+                        break;
                 }
             }
-
-            Console.WriteLine(" ");
-
-            Console.WriteLine(userController.CurrentUser);
+            //Console.WriteLine(" ");
+            //Console.WriteLine(userController.CurrentUser);
             Console.ReadLine();
         }
 
