@@ -1,17 +1,28 @@
-﻿using System;
+﻿using Celebra.BL.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Celebra.BL.Controller
 {
-    public class DatabaseDataSaver : IDataSaver
+    public class DatabaseSaver : IDataSaver
     {
-        public T Load<T>(string fileName)
+        public List<T> Load<T>() where T : class
         {
-            throw new NotImplementedException();
+            using (var db = new FitnessContext())
+            {
+                var result = db.Set<T>().Where(t => true).ToList();
+                return result;
+            }
         }
 
-        public void Save(string fileName, object item)
+         public void Save<T>(List<T> item) where T : class
         {
-            throw new NotImplementedException();
+            using (var db = new FitnessContext())
+            {
+                db.Set<T>().AddRange(item);
+                db.SaveChanges();
+            }
         }
     }
 }

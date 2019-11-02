@@ -9,10 +9,9 @@ namespace Celebra.BL.Controller
 {
     public class UserController : ControllerBase
     {
-        private const string USERS_FILE_NAME = "users.dat";
         public List<User>   Users           { get; }
         public User         CurrentUser     { get; }
-        public bool         isNewUser       { get; } = false;
+        public bool         IsNewUser       { get; } = false;
 
         public UserController(string userName)
         {
@@ -28,15 +27,15 @@ namespace Celebra.BL.Controller
             {
                 CurrentUser = new User(userName);
                 Users.Add(CurrentUser);
-                isNewUser = true;
+                IsNewUser = true;
                 Save();
             }
         }
 
         private List<User> GetUsersData()
         {
-            return Load<List<User>>(USERS_FILE_NAME) ?? new List<User>();
-            
+            //return Load<List<User>>(USERS_FILE_NAME) ?? new List<User>();
+            return Load<User>() ?? new List<User>();
         }
 
         public void SetNewUserData(string genderName, DateTime birthData, double weight = 1, double height = 1)
@@ -50,7 +49,7 @@ namespace Celebra.BL.Controller
         }
         public void Save()
         {
-            Save(USERS_FILE_NAME, Users);
+            Save(Users);
         }
     }
 }

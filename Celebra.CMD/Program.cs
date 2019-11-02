@@ -21,7 +21,7 @@ namespace Celebra.CMD
             var eatingController = new EatingController(userController.CurrentUser);
             var exerciseController = new ExerciseController(userController.CurrentUser);
 
-            if (userController.isNewUser)
+            if (userController.IsNewUser)
             {
                 Console.WriteLine("Введите ваш пол:");
 

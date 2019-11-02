@@ -51,14 +51,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Controller\ControllerBase.cs" />
     <Compile Include="Controller\DatabaseDataSaver.cs" />
     <Compile Include="Controller\EatingController.cs" />
     <Compile Include="Controller\ExerciseController.cs" />
+    <Compile Include="Controller\FitnessContext.cs" />
     <Compile Include="Controller\IDataSaver.cs" />
     <Compile Include="Controller\SerializeDataSaver.cs" />
     <Compile Include="Controller\UserController.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Activity.cs" />
     <Compile Include="Model\Eating.cs" />
     <Compile Include="Model\Exercise.cs" />

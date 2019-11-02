@@ -8,12 +8,14 @@ namespace Celebra.BL.Model
     public class Food
     {
         public int    Id                { get; set; }
-        public string Name              { get; }
-        public double Proteins          { get; }
-        public double Fats              { get; }
-        public double Carbohydrates     { get; }
-        public double Calories          { get; }
+        public string Name              { get; set; }
+        public double Calories          { get; set; }
+        public double Proteins          { get; set; }
+        public double Fats              { get; set; }
+        public double Carbohydrates     { get; set; }
+        
 
+        public Food() { }
         public Food(string name) : this(name, 1, 1, 1, 1) {}
         public Food(string name, double calories, double proteins, double fats, double carbohydrates)
         {
@@ -41,6 +43,7 @@ namespace Celebra.BL.Model
             Carbohydrates   = carbohydrates / 100;
             Calories        = calories      / 100;
         }
+
 
         private double isOneGramm(double value)
         { return value / 100.0; }
