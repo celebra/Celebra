@@ -72,7 +72,7 @@ namespace Celebra.CMD
             }
             //Console.WriteLine(" ");
             //Console.WriteLine(userController.CurrentUser);
-            Console.ReadLine();
+            //Console.ReadLine();
         }
 
         private static (DateTime Begin, DateTime End, Activity Activity) EnterExercise()
